@@ -15,7 +15,7 @@ pipeline {
 							echo "BUILD THE PHPDB IMAGE"
 							sh "scp -o StrictHostKeyChecking=no -r php_files db_files ${BUILD_IP}:/home/ec2-user/"
 							sh "ssh -o StrictHostKeyChecking=no ${BUILD_IP} 'bash ~/php_files/php_script.sh'"
-							sh "ssh -o StrictHostKeyChecking=no ${BUILD_IP} 'sudo docker build . -t ${IMAGE_PHP} -f /home/ec2-user/php_files/dockerfile'"
+							sh "ssh -o StrictHostKeyChecking=no ${BUILD_IP} 'sudo cd /home/ec2-user/php_files && docker build . -t ${IMAGE_PHP} -f /home/ec2-user/php_files/dockerfile'"
 							sh "ssh -o StrictHostKeyChecking=no ${BUILD_IP} 'sudo docker build . -t ${IMAGE_DB} -f /home/ec2-user/db_files/dockerfile'"
 							sh "ssh -o StrictHostKeyChecking=no ${BUILD_IP} 'sudo docker login -u ${docr} -p ${dpwd}'"
 							sh "ssh -o StrictHostKeyChecking=no ${BUILD_IP} 'sudo docker push ${IMAGE_PHP}'"
