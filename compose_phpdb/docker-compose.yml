@@ -12,8 +12,8 @@ services:
      image: "${db}"
      volumes:
      - db_data:/var/lib/mysql
-     #environment:
-     #   MYSQL_ROOT_PASSWORD: password
-     #   MYSQL_DATABASE: mydatabase
+     environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: mydatabase
 volumes:
    db_data: {}
